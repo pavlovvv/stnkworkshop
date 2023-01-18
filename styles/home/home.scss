@@ -1,0 +1,219 @@
+$border: rgb(190, 253, 255, 0.1);
+
+.home {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../public/images/home/bg.png');
+    color: white;
+    overflow: hidden;
+
+    .container {
+        margin: 0 20px;
+
+        @media (max-width: 650px) {
+            margin: 0 8px;
+        }
+    }
+}
+
+.home__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+
+    @media (max-width: 650px),
+    (max-height: 650px) {
+        min-height: 100vh;
+        height: auto;
+    }
+}
+
+.header {
+    border-left: solid 2px $border;
+    border-right: solid 2px $border;
+    border-bottom: solid 2px $border;
+    border-radius: 0 0 40px 40px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(190, 253, 255, 0.05);
+
+    @media (max-width: 650px) {
+        border-radius: 0 0 20px 20px;
+    }
+}
+
+.header__container {
+    padding: 20px 40px;
+
+    @media (max-width: 650px) {
+        padding: 20px;
+    }
+}
+
+.header__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.header__logo {
+    width: 124px;
+    height: 70px;
+    position: relative;
+
+    @media (max-width: 650px) {
+        width: 79px;
+        height: 45px;
+    }
+}
+
+.header__buttons {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    color: #e6f7ff;
+
+    @media (max-width: 650px) {
+        column-gap: 15px;
+    }
+
+    @media (max-width: 320px) {
+        column-gap: 5px;
+    }
+}
+
+.header__buttons-button {
+    font-size: 25px;
+    padding: 10px 15px;
+    background-color: rgba(190, 253, 255, 0.04);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+
+    &:hover {
+        background: rgba(188, 217, 255, 0.1)
+    }
+
+    @media (max-width: 650px) {
+        font-size: 17px;
+        padding: 7px 10px;
+        column-gap: 5px;
+        background-color: rgba(190, 253, 255, 0.05);
+        border-radius: 5px;
+    }
+
+    @media (max-width: 320px) {
+        font-size: 15px;
+    }
+}
+
+.header__icon {
+    font-size: 28px;
+
+    @media (max-width: 650px) {
+        font-size: 21px;
+    }
+
+    @media (max-width: 320px) {
+        font-size: 17px;
+    }
+}
+
+@import "home-main";
+
+.footer {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(190, 253, 255, 0.05);
+    border-left: solid 2px $border;
+    border-right: solid 2px $border;
+    border-top: solid 2px $border;
+    border-radius: 40px 40px 0 0;
+    max-height: 100px;
+
+    @media (max-width: 650px) {
+        border-radius: 20px 20px 0 0;
+        max-height: initial;
+    }
+
+    max-width: 100%;
+}
+
+.footer__container {
+    padding: 30px 260px;
+
+    @media (max-width: 1500px) {
+        padding: 20px;
+    }
+
+    @media (max-width: 350px) {
+        padding: 20px 10px;
+    }
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: initial;
+    flex-wrap: nowrap;
+
+    div,
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        background-color: rgba(207, 240, 255, 0.07);
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.4s;
+        -webkit-transition: 0.4s;
+
+        @media (max-width: 1000px) {
+            font-size: 15px;
+        }
+
+        @media (max-width: 650px) {
+            font-size: 13px;
+            border-radius: 3px;
+            padding: 5px 7px;
+            flex: 1 1 auto;
+        }
+
+        &:hover {
+            background: rgba(188, 217, 255, 0.1)
+        }
+    }
+
+    @media (max-width: 850px) {
+        column-gap: 10px;
+        flex: 1 1 auto;
+    }
+}
+
+.footer__media {
+    column-gap: 7px;
+}
+
+.footer__media-icon {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3px;
+    row-gap: 3px;
+}

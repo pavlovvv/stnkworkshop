@@ -18,13 +18,16 @@ import TextSlide2 from "../components/home/TextSlide2";
 import TextSlide3 from "../components/home/TextSlide3";
 import ProgressBar from "../components/home/ProgressBar";
 import { useMediaQuery } from "@mui/material";
+import "../styles/home/home.scss";
 
 const UniSansRegular = localFont({
   src: "../public/fonts/Uni Sans Regular.ttf",
+  preload: true,
 });
 
 const UniSansThin = localFont({
   src: "../public/fonts/UniSans-Trial-Thin.otf",
+  preload: true,
 });
 
 const BgSlide1: React.FC = () => {
@@ -46,7 +49,6 @@ const BgSlide3: React.FC = () => {
 };
 
 const FooterLinks: React.FC = () => {
-  
   return (
     <>
       <a>For Media</a>
@@ -59,19 +61,17 @@ const FooterLinks: React.FC = () => {
   );
 };
 
-
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const Home: NextPage = () => {
-  
   const [activeMainStep, setActiveMainStep] = useState<number>(0);
   const [isVisible, setVisible] = useState<boolean>(true);
-  
+
   const maxW900 = useMediaQuery("(max-width:900px)");
   const maxW650 = useMediaQuery("(max-width:650px)");
 
   const handleMainStepChange = (step: number): void => {
-    const time: number = !maxW650 ? 1500 : 1100
+    const time: number = !maxW650 ? 1500 : 1100;
     if (isVisible) {
       setVisible(false);
       setTimeout(() => {
@@ -207,4 +207,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home
+export default Home;

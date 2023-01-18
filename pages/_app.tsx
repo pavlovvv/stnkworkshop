@@ -1,8 +1,8 @@
 import Head from "next/head";
 import React from "react";
 import "../styles/styles.css";
-import "../styles/home.scss"
-import { AppProps } from 'next/app';
+
+import { AppProps } from "next/app";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,9 +10,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>STNK</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-          <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </>
   );
 }
