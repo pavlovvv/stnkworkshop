@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import slide1Ellipse1 from "../../public/images/home/slide1ellipse1.png";
 import slide1Ellipse2 from "../../public/images/home/slide1ellipse2.png";
 import type { IHomeSlideProps } from "../../typescript/interfaces/data";
-import slide3Character from "../../public/images/home/slide3character.png";
 import slide3Target from "../../public/images/home/slide3target.png";
 import slide3Arrow from "../../public/images/home/slide3arrow.png";
-import slide3TargetMobile from "../../public/images/home/slide3targetMobile.png"
+import slide3TargetMobile from "../../public/images/home/slide3targetMobile.png";
 import { useMediaQuery } from "@mui/material";
+import styles from "../../styles/home/home.module.scss";
+import getImg from "../../other/getImg";
+import { MyImage } from "../MyImage";
 
 const ImageSlide3: NextPage<IHomeSlideProps> = ({ isVisible }) => {
   const x: number[] = [-1500, -1150, -1100, -1300, -1200, -1500, -1100, -1000];
@@ -15,24 +17,34 @@ const ImageSlide3: NextPage<IHomeSlideProps> = ({ isVisible }) => {
   const maxW650 = useMediaQuery("(max-width:650px)");
 
   return (
-    <div className="main__left-img-slide">
+    <div className={styles["main__left-img-slide"]}>
       <AnimatePresence>
         {isVisible && (
           <>
-            <motion.img
-              src={slide3Character.src}
+            <motion.div
               initial={{ x: -900 }}
               animate={{ x: 0 }}
               exit={{ x: -900 }}
               transition={{ duration: 1.4, delay: 0.1 }}
               key="character"
-              className="main__left-img-character"
-              alt="stnk workshop character"
-            />
+              className={styles["main__left-img-slide"]}
+              style={{ paddingLeft: 0, zIndex: 2 }}
+            >
+              <MyImage
+                className={styles["main__left-img-character"]}
+                placeholderSrc={getImg("home/slide3character-min.png")}
+                src={getImg("home/slide3character.png")}
+                alt="stnk workshop character"
+              />
+            </motion.div>
             <motion.img
               src={slide1Ellipse1.src}
               alt="stnk workshop ellipse"
-              className="main__left-ellipse main__left-ellipse_slide3_ellipse1"
+              className={
+                styles["main__left-ellipse"] +
+                " " +
+                styles["main__left-ellipse_slide3_ellipse1"]
+              }
               initial={{ x: -600 }}
               animate={{ x: 0 }}
               exit={{ x: -600 }}
@@ -47,7 +59,11 @@ const ImageSlide3: NextPage<IHomeSlideProps> = ({ isVisible }) => {
               transition={{ duration: 1.25, delay: 0.1 }}
               key="ellipse2"
               alt="stnk workshop ellipse"
-              className="main__left-ellipse main__left-ellipse_slide3_ellipse2"
+              className={
+                styles["main__left-ellipse"] +
+                " " +
+                styles["main__left-ellipse_slide3_ellipse2"]
+              }
             />
             <motion.img
               src={!maxW650 ? slide3Target.src : slide3TargetMobile.src}
@@ -57,9 +73,9 @@ const ImageSlide3: NextPage<IHomeSlideProps> = ({ isVisible }) => {
               transition={{ duration: 1.4, delay: 0.1 }}
               key="target"
               alt="stnk workshop target"
-              className="main__left-slide3-target"
+              className={styles["main__left-slide3-target"]}
             />
-            <div className="main__left-slide3-arrows">
+            <div className={styles["main__left-slide3-arrows"]}>
               {x.map((x: number, i: number) => {
                 return (
                   <motion.img
@@ -70,7 +86,7 @@ const ImageSlide3: NextPage<IHomeSlideProps> = ({ isVisible }) => {
                     transition={{ duration: 1.4, delay: 0.1 }}
                     key={`target ${i}`}
                     alt="stnk workshop arrow"
-                    className="main__left-slide3-arrow"
+                    className={styles["main__left-slide3-arrow"]}
                   />
                 );
               })}

@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import { LinearProgress} from "@mui/material";
-import {createTheme, ThemeProvider} from "@mui/material/styles"
+import { LinearProgress } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import type { IHomeSlideProps } from "../../typescript/interfaces/data";
 import { useState, useEffect } from "react";
 import { browserName } from "react-device-detect";

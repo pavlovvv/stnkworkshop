@@ -13,19 +13,13 @@ const nextConfig = {
       transform: "@mui/material/{{member}}"
     }
   },
-  webpack(config) {
-    // disable css-module in Next.js
-    config.module.rules.forEach((rule) => {
-      const { oneOf } = rule;
-      if (oneOf) {
-        oneOf.forEach((one) => {
-          if (!`${one.issuer?.and}`.includes('_app')) return;
-          one.issuer.and = [path.resolve(__dirname)];
-        });
-      }
-    })
+  images: {
+    domains: ['stnkworkshop-images.s3.amazonaws.com']
+  },
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
     return config;
-  }
+  },
 }
 
 module.exports = nextConfig

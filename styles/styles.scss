@@ -52,7 +52,7 @@ p {
   line-height: inherit;
 }
 
-p + p {
+p+p {
   margin-top: 1em;
 }
 
@@ -67,7 +67,8 @@ svg {
   height: auto;
 }
 
-a, a:active {
+a,
+a:active {
   text-decoration: none;
   color: inherit;
 }
@@ -115,6 +116,11 @@ legend {
   display: block;
 }
 
-html, body {
+html,
+body {
   background-color: #000000;
+}
+
+img {
+  pointer-events: none;
 }

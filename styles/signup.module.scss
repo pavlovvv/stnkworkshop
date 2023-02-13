@@ -1,0 +1,233 @@
+$border: solid 1px rgb(190, 253, 255, 0.1);
+
+@font-face {
+    font-family: 'UniSans Thin';
+    src: url('../public/fonts/UniSans-Trial-Thin.otf');
+}
+
+@font-face {
+    font-family: 'UniSans Regular';
+    src: url('../public/fonts/Uni-Sans-Regular.ttf');
+}
+
+.reg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #cff0ff;
+}
+
+.reg_margin {
+    margin: 50px 0
+}
+
+.reg__inner {
+    min-width: 1000px;
+    min-height: 585px;
+    border: $border;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(190, 253, 255, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+    @media (max-width: 1050px) {
+        min-width: unset;
+        min-height: unset;
+    }
+}
+
+.reg__top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'UniSans Thin';
+    font-size: 40px;
+    text-transform: uppercase;
+    padding: 20px;
+    background-color: rgba(190, 253, 255, 0.05);
+    border-bottom: $border;
+    font-weight: min;
+
+    @media (max-width: 1050px) {
+        font-size: 4vw;
+    }
+
+    @media (max-width: 550px) {
+        font-size: 5vw;
+    }
+}
+
+.reg__middle {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    padding: 0 50px;
+    flex-grow: 1;
+    column-gap: 30px;
+
+    @media (max-width: 750px) {
+        padding: 0 10px;
+        column-gap: 10px;
+    }
+}
+
+.card {
+    max-width: 250px;
+    background-color: rgba(190, 253, 255, 0.05);
+    border: $border;
+    border-radius: 10px;
+    font-family: 'UniSans Regular';
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+
+    &:hover {
+        background-color: rgba(190, 253, 255, 0.1);
+    }
+}
+
+.card_active {
+    transition: 1s;
+    -webkit-transition: 1s;
+    border: solid 1px rgb(255, 203, 63, 0.1);
+    background: linear-gradient(35deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 203, 63, 0.15) 100%);
+
+    .card__top {
+        border-bottom: solid 1px rgb(255, 203, 63, 0.1);
+    }
+
+    .card__middle {
+        border-bottom: solid 1px rgb(255, 203, 63, 0.1);
+        ;
+    }
+}
+
+.card__top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgba(190, 253, 255, 0.05);
+    border-bottom: $border;
+    font-weight: min;
+
+    @media (max-width: 1050px) {
+        font-size: 2vw;
+    }
+
+    @media (max-width: 550px) {
+        font-size: 2.5vw;
+    }
+}
+
+.card__middle {
+    flex-grow: 1;
+    border-bottom: $border;
+    padding-top: 30px;
+    display: flex;
+    align-items: flex-end;
+    height: fit-content;
+
+    img {
+        height: fit-content;
+    }
+
+    @media (max-width: 750px) {
+        min-height: 30vw;
+    }
+}
+
+.card__bottom {
+    padding: 10px 15px;
+
+    @media (max-width: 1050px) {
+        font-size: 1.7vw;
+    }
+
+    @media (max-width: 750px) {
+        min-height: 62px;
+    }
+
+    @media (max-width: 550px) {
+        padding: 10px 5px;
+        font-size: 2.5vw;
+        min-height: 80px;
+    }
+}
+
+.reg__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+
+    button {
+        font-size: 20px;
+        padding: 5px 15px;
+        background-color: rgba(190, 253, 255, 0.04);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 10px;
+        cursor: pointer;
+        transition: 0.4s;
+        -webkit-transition: 0.4s;
+        color: #cff0ff;
+
+        &:hover {
+            background: rgba(188, 217, 255, 0.1)
+        }
+
+        &:disabled {
+            background: rgba(207, 240, 255, 0.04);
+            color: rgba(207, 240, 255, 0.3);
+            border: 1px solid rgba(207, 240, 255, 0.1)
+        }
+
+        @media (max-width: 550px) {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 550px) {
+        padding-bottom: 20px;
+    }
+}
+
+.main-bg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.main-bg__img {
+    right: 0;
+    animation: 1s show ease-in-out;
+    height: 85vh;
+    width: auto;
+
+    @media (max-width: 500px) {
+        height: 100vw;
+    }
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

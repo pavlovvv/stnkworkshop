@@ -702,6 +702,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'UniSans Thin';
 
     @media (max-width: 1700px) {
         font-size: 50px;
@@ -711,7 +712,7 @@
     @media (max-width: 1300px) {
         max-width: 300px;
         font-size: 37px;
-        min-height: 242px;
+        min-height: 250px;
     }
 
     @media (max-width: 800px) {

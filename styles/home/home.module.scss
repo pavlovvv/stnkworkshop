@@ -1,9 +1,18 @@
 $border: rgb(190, 253, 255, 0.1);
 
+@font-face {
+    font-family: 'UniSans Regular';
+    src: url('../../public/fonts/Uni-Sans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'UniSans Thin';
+    src: url('../../public/fonts/UniSans-Trial-Thin.otf');
+}
+
 .home {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../public/images/home/bg.png');
     color: white;
     overflow: hidden;
 
@@ -14,6 +23,14 @@ $border: rgb(190, 253, 255, 0.1);
             margin: 0 8px;
         }
     }
+}
+
+.home_bg_main {
+    background-image: url('../../public/images/home/bg.png');
+}
+
+.home_bg_signup {
+    background-image: url('../../public/images/signup/bg.png');
 }
 
 .home__inner {
@@ -75,12 +92,13 @@ $border: rgb(190, 253, 255, 0.1);
     align-items: center;
     column-gap: 30px;
     color: #e6f7ff;
+    font-family: 'UniSans Regular';
 
     @media (max-width: 650px) {
         column-gap: 15px;
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 389px) {
         column-gap: 5px;
     }
 }
@@ -110,19 +128,24 @@ $border: rgb(190, 253, 255, 0.1);
         border-radius: 5px;
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 389px) {
         font-size: 15px;
+    }
+
+    @media (max-width: 350px) {
+        font-size: 12px;
     }
 }
 
 .header__icon {
     font-size: 28px;
+    min-width: 15px;
 
     @media (max-width: 650px) {
         font-size: 21px;
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 389px) {
         font-size: 17px;
     }
 }
@@ -138,6 +161,8 @@ $border: rgb(190, 253, 255, 0.1);
     border-top: solid 2px $border;
     border-radius: 40px 40px 0 0;
     max-height: 100px;
+    font-family: 'UniSans Thin';
+    z-index: 2;
 
     @media (max-width: 650px) {
         border-radius: 20px 20px 0 0;
@@ -216,4 +241,14 @@ $border: rgb(190, 253, 255, 0.1);
     flex-wrap: wrap;
     column-gap: 3px;
     row-gap: 3px;
+}
+
+.text-swipeable-views {
+    @media (max-width: 450px) {
+        min-height: 129px;
+    }
+
+    @media (max-width: 400px) {
+        min-height: 111px;
+    }
 }
