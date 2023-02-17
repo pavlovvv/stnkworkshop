@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React from "react";
-import styles from "../../styles/signup.module.scss";
+import styles from "../../styles/signup/signup.module.scss";
 import getImg from "../../other/getImg";
 import { ISignUpFirstSlideProps } from "../../typescript/interfaces/data";
 import { MyImage } from "../MyImage";

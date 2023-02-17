@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { IMyImageProps } from "../typescript/interfaces/data";
 import styles from "../styles/other.module.scss";
+import { NoSsr } from "@mui/material";
 
 export const MyImage: React.FC<IMyImageProps> = ({
   src,
@@ -23,6 +24,12 @@ export const MyImage: React.FC<IMyImageProps> = ({
   }, [src]);
 
   return (
-    <img className={`${className || ''} ${cn}`} src={imageSrc} alt={alt || ""} />
+    <NoSsr>
+      <img
+        className={`${className || ""} ${cn}`}
+        src={imageSrc}
+        alt={alt || ""}
+      />
+    </NoSsr>
   );
 };

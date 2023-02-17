@@ -1,13 +1,15 @@
 $border: solid 1px rgb(190, 253, 255, 0.1);
 
+
+
 @font-face {
     font-family: 'UniSans Thin';
-    src: url('../public/fonts/UniSans-Trial-Thin.otf');
+    src: url('../../public/fonts/UniSans-Trial-Thin.otf');
 }
 
 @font-face {
     font-family: 'UniSans Regular';
-    src: url('../public/fonts/Uni-Sans-Regular.ttf');
+    src: url('../../public/fonts/Uni-Sans-Regular.ttf');
 }
 
 .reg {
@@ -33,7 +35,9 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
     display: flex;
     flex-direction: column;
     z-index: 2;
+}
 
+.first-slide-inner {
     @media (max-width: 1050px) {
         min-width: unset;
         min-height: unset;
@@ -171,7 +175,7 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
     padding-bottom: 40px;
 
     button {
-        font-size: 20px;
+        font-size: 22px;
         padding: 5px 15px;
         background-color: rgba(190, 253, 255, 0.04);
         border-radius: 5px;
@@ -231,3 +235,5 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
         opacity: 1;
     }
 }
+
+@import "second-slide.module.scss";
