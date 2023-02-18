@@ -25,7 +25,7 @@ const SecondSlide: NextPage<ISignUpSecondSlideProps> = ({
     },
   });
 
-  const handleClickShowPassword = (): void => {
+  const handleClickShowPassword = () => {
     setValues({
       ...values,
       showPassword: !values.showPassword,

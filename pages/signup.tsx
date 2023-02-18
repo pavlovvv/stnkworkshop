@@ -4,8 +4,12 @@ import styles from "../styles/signup/signup.module.scss";
 import { useState } from "react";
 import getImg from "../other/getImg";
 import { useForm } from "react-hook-form";
-import { IInputPasswordValues } from "../typescript/interfaces/data";
+import {
+  IInputPasswordValues,
+  ISignUpSubmit,
+} from "../typescript/interfaces/data";
 import SecondSlide from "../components/signup/SecondSlide";
+import ThirdSlide from "../components/signup/ThirdSlide";
 
 const SignUp = () => {
   const [active, setActive] = useState<number>(0);
@@ -38,15 +42,10 @@ const SignUp = () => {
     showPassword: false,
   });
 
-  const handleChange =
-    (prop: keyof IInputPasswordValues) =>
-    (event: React.ChangeEvent<HTMLInputElement>): void => {
-      setValues({ ...values, [prop]: event.target.value });
-      setValue(prop, event.target.value);
-    };
-
   const slide: keyof typeof styles =
     currentPage === 1 ? "first-slide-inner" : "second-slide-inner";
+
+  const onSubmit = ({ name, id, password, email }: ISignUpSubmit): void => {};
 
   return (
     <InitialLayout>
@@ -67,6 +66,18 @@ const SignUp = () => {
               values={values}
               setValues={setValues}
               setChangeCurrentPage={setChangeCurrentPage}
+            />
+          )}
+
+          {currentPage === 3 && (
+            <ThirdSlide
+              handleSubmit={handleSubmit}
+              onSubmit={onSubmit}
+              errors={errors}
+              isValid={isValid}
+              register={register}
+              values={values}
+              setValues={setValues}
             />
           )}
         </div>

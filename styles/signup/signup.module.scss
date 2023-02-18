@@ -1,4 +1,5 @@
 $border: solid 1px rgb(190, 253, 255, 0.1);
+$color: #cff0ff;
 
 
 
@@ -16,7 +17,7 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #cff0ff;
+    color: $color;
 }
 
 .reg_margin {
@@ -168,6 +169,32 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
     }
 }
 
+%submit-button {
+    font-size: 22px;
+    padding: 5px 15px;
+    background-color: rgba(190, 253, 255, 0.04);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    color: #cff0ff;
+
+    &:hover {
+        background: rgba(188, 217, 255, 0.1)
+    }
+
+    &:disabled {
+        background: rgba(207, 240, 255, 0.04);
+        color: rgba(207, 240, 255, 0.3);
+        border: 1px solid rgba(207, 240, 255, 0.1);
+        cursor: not-allowed;
+    }
+}
+
 .reg__bottom {
     display: flex;
     justify-content: center;
@@ -175,28 +202,7 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
     padding-bottom: 40px;
 
     button {
-        font-size: 22px;
-        padding: 5px 15px;
-        background-color: rgba(190, 253, 255, 0.04);
-        border-radius: 5px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        column-gap: 10px;
-        cursor: pointer;
-        transition: 0.4s;
-        -webkit-transition: 0.4s;
-        color: #cff0ff;
-
-        &:hover {
-            background: rgba(188, 217, 255, 0.1)
-        }
-
-        &:disabled {
-            background: rgba(207, 240, 255, 0.04);
-            color: rgba(207, 240, 255, 0.3);
-            border: 1px solid rgba(207, 240, 255, 0.1)
-        }
+        @extend %submit-button;
 
         @media (max-width: 550px) {
             font-size: 15px;
@@ -237,3 +243,4 @@ $border: solid 1px rgb(190, 253, 255, 0.1);
 }
 
 @import "second-slide.module.scss";
+@import "third-slide.module.scss";

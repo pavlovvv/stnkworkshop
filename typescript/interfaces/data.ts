@@ -24,7 +24,7 @@ export interface IInputPasswordValues {
 }
 
 import { Dispatch, SetStateAction } from "react";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 
 export interface ISignUpSecondSlideProps {
   setChangeCurrentPage: (n: number) => void;
@@ -33,4 +33,21 @@ export interface ISignUpSecondSlideProps {
   values: IInputPasswordValues;
   errors: FieldErrors<FieldValues>;
   register: UseFormRegister<FieldValues>;
+}
+
+export interface ISignUpThirdSlideProps {
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  onSubmit: (data: ISignUpSubmit) => void;
+  isValid: boolean;
+  setValues: Dispatch<SetStateAction<IInputPasswordValues>>;
+  values: IInputPasswordValues;
+  errors: FieldErrors<FieldValues>;
+  register: UseFormRegister<FieldValues>;
+}
+
+export interface ISignUpSubmit {
+  name: string
+  id: number
+  password: string
+  email: string
 }
