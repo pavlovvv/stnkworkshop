@@ -18,9 +18,9 @@ const FirstSlide: NextPage<ISignUpFirstSlideProps> = ({
       <div className={styles.reg__middle}>
         <section
           className={
-            styles.card + " " + (active === 1 ? styles.card_active : "")
+            styles.card + " " + (active === "Guest" ? styles.card_active : "")
           }
-          onClick={() => setChangeActive(1)}
+          onClick={() => setChangeActive("Guest")}
         >
           <div className={styles.card__top}>Guest</div>
           <div className={styles.card__middle} style={{ position: "relative" }}>
@@ -37,9 +37,9 @@ const FirstSlide: NextPage<ISignUpFirstSlideProps> = ({
 
         <section
           className={
-            styles.card + " " + (active === 2 ? styles.card_active : "")
+            styles.card + " " + (active === "Community Artist" ? styles.card_active : "")
           }
-          onClick={() => setChangeActive(2)}
+          onClick={() => setChangeActive("Community Artist")}
         >
           <div className={styles.card__top}>Community Artist</div>
           <div className={styles.card__middle}>
@@ -57,9 +57,9 @@ const FirstSlide: NextPage<ISignUpFirstSlideProps> = ({
 
         <section
           className={
-            styles.card + " " + (active === 3 ? styles.card_active : "")
+            styles.card + " " + (active === "Media Content Creator" ? styles.card_active : "")
           }
-          onClick={() => setChangeActive(3)}
+          onClick={() => setChangeActive("Media Content Creator")}
         >
           <div className={styles.card__top}>Media Content Creator</div>
           <div className={styles.card__middle}>
@@ -75,7 +75,7 @@ const FirstSlide: NextPage<ISignUpFirstSlideProps> = ({
         </section>
       </div>
       <div className={styles.reg__bottom}>
-        <button disabled={active < 1} onClick={() => setChangeCurrentPage(2)}>
+        <button disabled={active === ""} onClick={() => setChangeCurrentPage(2)}>
           Next
         </button>
       </div>

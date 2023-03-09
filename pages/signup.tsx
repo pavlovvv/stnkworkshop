@@ -10,12 +10,16 @@ import {
 } from "../typescript/interfaces/data";
 import SecondSlide from "../components/signup/SecondSlide";
 import ThirdSlide from "../components/signup/ThirdSlide";
+import emojiStrip from "emoji-strip";
+import { useAppDispatch } from "./../typescript/types/redux-hooks";
+import { signUp } from "../redux/user-slice";
 
 const SignUp = () => {
-  const [active, setActive] = useState<number>(0);
+  const dispatch = useAppDispatch();
+  const [active, setActive] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const setChangeActive = (n: number) => {
+  const setChangeActive = (n: string) => {
     setActive(n);
   };
 
@@ -28,8 +32,7 @@ const SignUp = () => {
     watch,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
-    setValue,
+    setError,
   } = useForm({
     mode: "onBlur",
   });
@@ -45,7 +48,19 @@ const SignUp = () => {
   const slide: keyof typeof styles =
     currentPage === 1 ? "first-slide-inner" : "second-slide-inner";
 
-  const onSubmit = ({ name, id, password, email }: ISignUpSubmit): void => {};
+  const onSubmit = ({ name, id, password, email }: ISignUpSubmit) => {
+    const properName = emojiStrip(name);
+
+    dispatch(
+      signUp({
+        activity: active,
+        name: properName,
+        id,
+        email: email.replace(/\s+/g, "").toLowerCase(),
+        password,
+      })
+    );
+  };
 
   return (
     <InitialLayout>
@@ -78,11 +93,12 @@ const SignUp = () => {
               register={register}
               values={values}
               setValues={setValues}
+              setError={setError}
             />
           )}
         </div>
         <div className={styles["main-bg"]}>
-          {active === 1 && (
+          {active === "Guest" && (
             <img
               src={getImg("signup/activeBg1-min.png")}
               className={styles["main-bg__img"]}
@@ -90,7 +106,7 @@ const SignUp = () => {
             />
           )}
 
-          {active === 2 && (
+          {active === "Community Artist" && (
             <img
               src={getImg("signup/activeBg2-min.png")}
               className={styles["main-bg__img"]}
@@ -98,7 +114,7 @@ const SignUp = () => {
             />
           )}
 
-          {active === 3 && (
+          {active === "Media Content Creator" && (
             <img
               src={getImg("signup/activeBg3-min.png")}
               className={styles["main-bg__img"]}

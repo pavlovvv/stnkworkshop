@@ -40,7 +40,7 @@ $border: rgb(190, 253, 255, 0.1);
     justify-content: space-between;
 
     @media (max-width: 650px),
-    (max-height: 850px) {
+    (max-height: 750px) {
         min-height: 100vh;
         height: auto;
     }
@@ -135,6 +135,10 @@ $border: rgb(190, 253, 255, 0.1);
     @media (max-width: 350px) {
         font-size: 12px;
     }
+}
+
+.header__buttons-button_active {
+    background: rgba(188, 217, 255, 0.1)
 }
 
 .header__icon {

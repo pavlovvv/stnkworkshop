@@ -6,8 +6,15 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormHelperText } from "@mui/material";
 import CustomTextField from "./CustomTextField";
 import { BiCheck } from "react-icons/bi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OtpInput from "react-otp-input";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../typescript/types/redux-hooks";
+import { useTimer } from "react-timer-hook";
+import CircularProgress from "@mui/material/CircularProgress";
+import { clearError, verify } from "../../redux/user-slice";
 
 const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
   handleSubmit,
@@ -17,8 +24,37 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
   values,
   errors,
   register,
+  setError,
 }) => {
+  const dispatch = useAppDispatch();
+
+  const [time, setTime] = useState<Date>(new Date());
   const [otpValue, setOtpValue] = useState<string>("");
+
+  const { seconds, restart } = useTimer({ expiryTimestamp: time });
+
+  const isCodeBeingSent = useAppSelector((state) => state.user.isCodeBeingSent);
+  const codeError = useAppSelector((state) => state.user.codeError);
+  const isPending = useAppSelector((state) => state.user.isPending);
+  const error = useAppSelector((state) => state.user.error);
+
+  useEffect(() => {
+    if (isCodeBeingSent) {
+      const time = new Date();
+      time.setSeconds(time.getSeconds() + 30);
+      restart(time);
+    }
+
+    if (codeError) {
+      setError("email", {
+        type: "manual",
+        message: codeError,
+      });
+      const time = new Date();
+      time.setSeconds(time.getSeconds());
+      restart(time);
+    }
+  }, [isCodeBeingSent, codeError]);
 
   const theme = createTheme({
     palette: {
@@ -29,7 +65,19 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
   });
 
   const handleOtpValueChange = (otp: string) => {
+    dispatch(clearError());
+
     setOtpValue(otp);
+  };
+
+  const handleSendingCode = () => {
+    dispatch(
+      verify({
+        email: values.email,
+        verificationCode: Number(otpValue),
+        password: values.password,
+      })
+    );
   };
 
   return (
@@ -40,7 +88,7 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
       <div
         className={`${styles.reg__middle} ${styles.reg__middle_third_slide}`}
       >
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles["form-container"]}>
             <div className={styles.form__inner}>
               <section>
@@ -104,20 +152,33 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
 
               <div className={styles["form-section__submit"]}>
                 <button
-                  disabled
                   className={styles["form-section__submit-button"]}
+                  disabled={isCodeBeingSent || seconds > 0}
+                  type="submit"
                 >
                   Send code
                 </button>
 
-                <div className={styles["form-section__submit-text"]}>
-                  <BiCheck /> Code sent. Another try will be in: 30 sec
-                </div>
+                {seconds > 0 && (
+                  <div className={styles["form-section__submit-text"]}>
+                    <BiCheck /> Code sent. Another try will be in: {seconds} sec
+                  </div>
+                )}
               </div>
 
               <section>
-                <div className={styles["form-section__top-label"]}>
-                  Enter your code
+                <div className={styles["form-section__top"]}>
+                  <div className={styles["form-section__top-label"]}>
+                    Enter your code
+                  </div>
+                  {error && (
+                    <div
+                      className={styles["form-section__top-helper-text"]}
+                      style={{ color: "#ff7373" }}
+                    >
+                      {error}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <OtpInput
@@ -128,7 +189,7 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
                     containerStyle={styles["form-section__otp-container"]}
                     inputStyle={styles["form-section__otp-input"]}
                     errorStyle={styles["form-section__otp-input_error"]}
-                    // hasErrored
+                    hasErrored={!!error}
                   />
                 </div>
               </section>
@@ -137,7 +198,16 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
         </form>
       </div>
       <div className={`${styles.reg__bottom}`}>
-        <button disabled={!isValid || otpValue.length < 5}>Verify</button>
+        <button
+          disabled={!isValid || otpValue.length < 5 || isPending}
+          onClick={handleSendingCode}
+        >
+          {!isPending ? (
+            "Verify"
+          ) : (
+            <CircularProgress size={30} sx={{ color: "#cff0ff" }} />
+          )}
+        </button>
       </div>
     </ThemeProvider>
   );

@@ -45,6 +45,8 @@
 .form-section__top {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 10px;
     align-items: flex-end;
     font-family: 'UniSans Regular';
 }

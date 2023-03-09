@@ -7,7 +7,7 @@ const SignUpHeader: React.FC = () => {
   return (
     <>
       <Link href="/signup">
-        <div className={styles["header__buttons-button"]}>
+        <div className={`${styles["header__buttons-button"]} ${styles["header__buttons-button_active"]}`}>
           <FaRegAddressBook className="header__icon" color="#e6f7ff" />
           Registration
         </div>

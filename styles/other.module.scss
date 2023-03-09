@@ -11,3 +11,22 @@
     filter: blur(0);
     transition: filter 0.2s linear;
 }
+
+.preloader {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../public/images/home/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.preloader-item {
+    display: block;
+    position: relative;
+    top: 30%;
+}
+
+.none {
+    display: none;
+}
