@@ -69,7 +69,7 @@ const SecondSlide: NextPage<ISignUpSecondSlideProps> = ({
                   variant="outlined"
                   required
                   error={!!errors.name}
-                  onChangeCapture={(e: any) => {
+                  onChangeCapture={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setValues({
                       ...values,
                       name: e.target.value,
@@ -125,10 +125,10 @@ const SecondSlide: NextPage<ISignUpSecondSlideProps> = ({
                   variant="outlined"
                   required
                   error={!!errors.id}
-                  onChangeCapture={(e: any) => {
+                  onChangeCapture={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setValues({
                       ...values,
-                      id: e.target.value,
+                      id: Number(e.target.value),
                     });
                   }}
                   customcolor={
@@ -182,7 +182,7 @@ const SecondSlide: NextPage<ISignUpSecondSlideProps> = ({
                   required
                   error={!!errors.password}
                   type={values.showPassword ? "text" : "password"}
-                  onChangeCapture={(e: any) => {
+                  onChangeCapture={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setValues({
                       ...values,
                       password: e.target.value,

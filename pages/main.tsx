@@ -41,7 +41,9 @@ const Main: NextPage = () => {
             padding: "15px",
             borderRadius: "10px",
           }}
-          onClick={() => {handleLogOut()}}
+          onClick={() => {
+            handleLogOut();
+          }}
         >
           Log out
         </button>

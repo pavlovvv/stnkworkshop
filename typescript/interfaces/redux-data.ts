@@ -6,6 +6,7 @@ export interface ISignState {
   isCodeBeingSent: boolean;
   error: StringOrNull;
   codeError: StringOrNull;
+  loginError: StringOrNull;
   isAuth: boolean;
 }
 
@@ -15,6 +16,11 @@ export interface ISignUp {
   id: number;
   password: string;
   email: string;
+}
+
+export interface ILogIn {
+  email: string;
+  password: string;
 }
 
 export interface IVerify {

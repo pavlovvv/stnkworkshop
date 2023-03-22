@@ -1,11 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  getAuth,
+} from "firebase/auth";
 import { API } from "../other/http/data";
 import { AppDispatch } from "./store";
 import {
   ISignUp,
   IVerify,
   ISignState,
+  ILogIn,
 } from "../typescript/interfaces/redux-data";
 
 export const signUp = createAsyncThunk<
@@ -42,6 +47,35 @@ export const signUp = createAsyncThunk<
     }
   }
 );
+
+export const login = createAsyncThunk<
+  object,
+  ILogIn,
+  { dispatch: AppDispatch }
+>("user/signUp", async function ({ email, password }, { dispatch }) {
+  try {
+    dispatch(setPending(true));
+    const response = await API.signAPI.login(email, password);
+
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password).catch(console.log);
+
+    localStorage.setItem("token", response.data.accessToken);
+    dispatch(setAuth(true));
+    dispatch(setPending(false));
+  } catch (error) {
+    dispatch(setPending(false));
+
+    if (!error.response) {
+      return dispatch(setLoginError("Some error occured. Try again later"));
+    }
+
+    const status = error.response.status;
+    dispatch(
+      setLoginError(status ? error.response.data.message : "Some error occured")
+    );
+  }
+});
 
 export const verify = createAsyncThunk<
   object,
@@ -100,6 +134,7 @@ const initialState: ISignState = {
   isCodeBeingSent: false,
   error: null,
   codeError: null,
+  loginError: null,
   isAuth: false,
 };
 
@@ -122,6 +157,9 @@ const userSlice = createSlice({
     setCodeError(state, action: PayloadAction<string>) {
       state.codeError = action.payload;
     },
+    setLoginError(state, action: PayloadAction<string>) {
+      state.loginError = action.payload;
+    },
     setPending(state, action: PayloadAction<boolean>) {
       state.isPending = action.payload;
     },
@@ -140,6 +178,7 @@ export const {
   setAuthPending,
   setError,
   setCodeError,
+  setLoginError,
   setPending,
   setCodeBeingSent,
   clearError,

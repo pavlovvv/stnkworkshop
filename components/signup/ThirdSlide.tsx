@@ -113,7 +113,7 @@ const ThirdSlide: NextPage<ISignUpThirdSlideProps> = ({
                   variant="outlined"
                   required
                   error={!!errors.email}
-                  onChangeCapture={(e: any) => {
+                  onChangeCapture={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setValues({
                       ...values,
                       email: e.target.value,

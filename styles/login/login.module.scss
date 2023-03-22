@@ -1,0 +1,26 @@
+.form-container_login {
+    height: 100%;
+    display: flex;
+    flex-direction: column
+}
+
+.form__inner_login {
+    flex: 1 1 auto;
+    justify-content: center;
+    row-gap: 40px
+}
+
+.reg__bottom_login {
+    padding-top: 20px;
+    flex-direction: column;
+    row-gap: 20px;
+
+    @media (max-width: 1050px) {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    @media (max-width: 550px) {
+        padding-bottom: unset;
+    }
+}

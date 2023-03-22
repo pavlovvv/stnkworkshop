@@ -23,6 +23,12 @@ export interface IInputPasswordValues {
   showPassword: boolean;
 }
 
+export interface ILoginInputValues {
+  email: string;
+  password: string;
+  showPassword: boolean;
+}
+
 import { Dispatch, SetStateAction } from "react";
 import {
   FieldErrors,
@@ -57,4 +63,13 @@ export interface ISignUpSubmit {
   id: number;
   password: string;
   email: string;
+}
+
+export interface ILoginSubmit {
+  email?: string;
+  password?: string;
+}
+
+export interface ISignUpHeaderProps {
+  pathname: string;
 }

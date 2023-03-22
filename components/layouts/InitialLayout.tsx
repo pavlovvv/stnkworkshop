@@ -55,7 +55,9 @@ const InitialLayout: React.FC<any> = ({ children }) => {
     <>
       <div
         className={`${styles.home} ${
-          pathname === "signup" ? styles.home_bg_signup : styles.home_bg_main
+          pathname === "signup" || pathname === "login"
+            ? styles.home_bg_signup
+            : styles.home_bg_main
         }`}
         key={+isAuthPending}
       >
@@ -77,7 +79,9 @@ const InitialLayout: React.FC<any> = ({ children }) => {
                   </div>
                   <div className={styles.header__buttons}>
                     {pathname === "main" && <HomeHeader />}
-                    {pathname === "signup" && <SignUpHeader />}
+                    {(pathname === "signup" || pathname === "login") && (
+                      <SignUpHeader pathname={pathname} />
+                    )}
                   </div>
                 </div>
               </div>

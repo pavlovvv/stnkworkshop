@@ -28,6 +28,15 @@ export const API = {
         .then((response) => response);
     },
 
+    login: (email: string, password: string) => {
+      return instance
+        .post(`auth/login`, {
+          email,
+          password,
+        })
+        .then((response) => response);
+    },
+
     verify: (verificationCode: number, email: string) => {
       return instance
         .post(`auth/verifyCode`, { verificationCode, email })
